@@ -1,8 +1,71 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Trang chủ";
+    var products = ViewData["Products"] as IEnumerable<MVC.Models.Product>;
+    var categories = ViewData["Categories"] as IEnumerable<MVC.Models.Category>;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Chào mừng bạn đến với WaterOrderApp!</h1>
+        <p class="lead">Lựa chọn đồ uống yêu thích của bạn từ menu đa dạng của chúng tôi!</p>
+        <hr class="my-4">
+        <a class="btn btn-primary btn-lg" href="/Products" role="button">Xem Sản Phẩm</a>
+    </div>
+
+    <!-- Hiển thị danh mục sản phẩm -->
+    <div class="row mt-5">
+        <h2>Danh mục sản phẩm</h2>
+        <div class="col-12">
+            <div class="row">
+                @if (categories != null && categories.Any())
+                {
+                    @foreach (var category in categories)
+                    {
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">@category.Name</h5>
+                                    <p class="card-text">@category.Description</p>
+                                    <a href="/Products?categoryId=@category.CategoryId" class="btn btn-info">Xem sản phẩm</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>Không có danh mục nào được tìm thấy.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Hiển thị sản phẩm nổi bật -->
+    <div class="row mt-5">
+        <h2>Sản phẩm nổi bật</h2>
+        <div class="col-12">
+            <div class="row">
+                @if (products != null && products.Any())
+                {
+                    @foreach (var product in products)
+                    {
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">@product.Name</h5>
+                                    <p class="card-text">@product.Description</p>
+                                    <p class="card-text"><strong>Giá:</strong> @product.Price.ToString("C")</p>
+                                    <a href="/Products/Details/@product.ProductId" class="btn btn-primary">Chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>Không có sản phẩm nào được tìm thấy.</p>
+                }
+            </div>
+        </div>
+    </div>
 </div>

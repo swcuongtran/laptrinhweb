@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using MVC.Data;
+using MVC.Repositories;
+using MVC.Services.Implementation;
+using MVC.Services.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
+builder.Services.AddScoped<IOptionService, OptionService>();
+builder.Services.AddScoped<IOptionDetailService, OptionDetailService>();
+builder.Services.AddScoped<IBillService, BillService>();
 
 var app = builder.Build();
 

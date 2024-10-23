@@ -9,6 +9,6 @@
         public Product Product { get; set; }
         public int Quantity { get; set; }
         public decimal Subtotal { get; set; }
-        public List<OptionDetail> OptionDetails { get; set; }
+        public ICollection<OptionDetail> OptionDetails { get; set; }
     }
 }
