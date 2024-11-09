@@ -1,0 +1,163 @@
+body{
+   margin : 0px ;
+   height: 100vh;
+   background: linear-gradient(135deg, #ff7e5f, #feb47b);
+   
+}
+
+.Sidebar{   /*Thanh sidebar sắp xếp các container chứa các nút */
+   position: fixed; /*Cho thanh này nằm cố định */
+   background-color: #333333; /* Màu không trong suốt */
+   width: 10%;  /*Độ rộng chiếm 10% màn hình */
+   height: 100vh ;  /*Chiều cao chiếm toàn bộ màn hình */
+
+   display: flex;   /*Container sidebar sẽ mang tính chất của FlexBox -> các phần tử bên trong nó cx phải theo định dạng của nó */
+   align-items: flex-start; /* Sắp xếp các container theo chiều dọc từ trên xuống */ 
+   flex-direction: column; /*đặt thẳng đứng sidebar và các phần tử bên trong */
+   
+   margin: 0px ; 
+   min-width: 190px; /*Chiều rộng tối thiểu của sidebar ( tránh lỗi tràn hiển thị khi cửa sổ bị thu hẹp ) */
+   max-width: 220px;
+
+   z-index: 1;
+}
+.button-container {   /*Container chứa button */
+   position: relative;
+   top: 200px; /*cách đỉnh container cha 200px */
+
+   width: 100%; 
+   height: 65px; /* Đặt chiều cao cố định cho container để các nút có thể phóng to thoải mái */
+
+   margin : 20px 0px ;  
+   display: flex; 
+   justify-content: center; /*Nội dung bên trong nút cũng được căn chỉnh ở giữa nút */
+   align-items: center;  /*Đặt các nút chức năng ở giữa */
+}
+.SidebarButton {  /*nút*/
+   position: relative; 
+   background-color: #333333; /* Màu không trong suốt */
+   color: white;
+   font-size: 1.5em;
+
+   border: none; 
+   border-radius: 30px;  
+   
+   padding: 15px 0px; /*padding top and bot : 10px ,left and right :0px */
+   margin: 20px 0px; /*margin top and bot : 10px ,left and right :0px */
+   width: 100%;
+   max-width: 200px ;
+
+   display: flex; 
+   align-items: center; /* Đặt nội dung nút ở giữa */
+   justify-content: center; /* Đặt nội dung nút ở giữa */
+
+   transition: 0.3s ease;
+
+   z-index: 2;
+   
+}
+/*================================================================================================*/
+.SidebarButton:hover{
+   background: inherit; /* Đồng bộ màu với background của body */
+   color: black; /* Màu chữ */
+   background-color: #fc886a; /* Làm màu sáng hơn hoặc trong suốt hơn */
+   /*background-color: #333333; /* Màu không trong suốt */
+   width: 100%; /* Chiều rộng nở to đến 100% container */
+
+   border-top-right-radius: 0px;
+   border-bottom-right-radius: 0px;
+   padding: calc(15px * (100 / 90)); /* Điều chỉnh chiều cao */
+   cursor: pointer;
+   transition: 1s ease;
+
+   z-index: 0; /* Giảm z-index để đồng bộ màu với background*/
+}
+
+.SidebarButton i {    /*Lớp định nghĩa kiểu mặc định biểu tượng bên trong nút */
+    transform: scale(1);
+    transition: transform 0.7s ease; 
+}
+.SidebarButton:hover i {
+   transform: scale(1.3);  /*Khi hover vào nút ,biểu tượng to lên 30% */
+}
+
+.SidebarButton:active,   /*Khi ta active nút hoặc khi nút đang chứa lớp active */
+.SidebarButton.active {
+   background: inherit; /* Đồng bộ màu với background của body */
+   color: black; /* Màu chữ */
+   background-color: #fc886a; /* Làm màu sáng hơn hoặc trong suốt hơn */
+   width: 100%; /* Chiều rộng nở to đến 100% container*/
+
+   border-top-right-radius: 0px;
+   border-bottom-right-radius: 0px;
+   padding: calc(15px * (100 / 90)); /* Điều chỉnh chiều cao */
+
+   cursor: pointer;
+   
+   z-index: 0; /* Giảm z-index để đồng bộ màu background */
+   
+}
+
+
+.SidebarButton.active i, .SidebarButton:active i { 
+   transform: translateX(-65px) scale(1.3);/*Khi active nút hoặc nút đó đang được active ,biểu tượng thụt qua trái 60px */
+
+}
+
+/*================================================================================================*/
+.SidebarButton:hover::before, .SidebarButton.active::before { 
+   transform: scale(1); 
+}
+.SidebarButton::before {
+   content: '';
+   position: absolute; /*Định vị pseudo này gắn liền với mỗi nút */
+   top: 0; left: 0;
+   background-color: #fc886a;
+   width: 100%;
+   height: 100%; 
+
+   border-radius: 30px; 
+   border-top-right-radius: 0px ;
+   border-bottom-right-radius: 0px;
+
+   transform: scaleX(0); 
+   transform-origin: right;  /*Đỏ màu từ bên phải nút qua */
+
+   transition: transform 0.4s cubic-bezier(1,1,1,1);
+
+   z-index: -1;
+}
+
+/*================================================================================================*/
+.SidebarButton::after { 
+   content: attr(data-ButtonName);  /*Hiển thị mô tả khi Hover */
+   position: absolute; /*Định vị tooltip gần nút*/
+   left: 100%; /* Đặt tooltip phía bên phải nút */ 
+   top: 50%;  /*Cách đỉnh của phần tử cha 50% chiều cao của nó */
+   transform: translateY(-50%);
+   background-color: #3a3939; 
+   color: #fff;
+   padding: 10px;
+   border-radius: 10px; 
+   opacity: 0;  /*Ban đầu ẩn cái tool tip đi */
+   white-space: nowrap; /* Đảm bảo nội dung không bị ngắt dòng */ 
+   pointer-events: none; /* Đảm bảo tooltip không can thiệp đến sự kiện chuột */ 
+   
+   transition: opacity 0.5s, left 0.5s, transform 0.5s;
+
+   z-index: 10; /*Đảm bảo tool tip luôn hiển thị trước mọi phần tử khác của web */
+}
+ .SidebarButton:hover::after{
+   opacity: 0.5;
+   transition: opacity 0.85s; /*Thời gian chữ xuất hiện */
+}
+
+.SidebarButton:active::after, .SidebarButton.active::after {
+   left: 30%; /* Đặt mô tả gần biểu tượng bên trong nút */
+   background: #fc876a;
+   color:#0c0909;
+   opacity: 0.9; /* Hiển thị mô tả đầy đủ */ 
+   transform: translateY(-50%) ; /* Căn giữa dọc và dịch chuyển sang bên trong nút */
+   transition: opacity 0.3s ,0.7s ease-in-out  /* Hiệu ứng di chuyển mượt mà */ 
+}
+

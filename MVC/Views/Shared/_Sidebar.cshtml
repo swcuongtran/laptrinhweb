@@ -1,0 +1,12 @@
+@model IEnumerable<SidebarItem>
+
+<div class="Sidebar">
+    @foreach (var item in Model)
+    {
+        <div class="button-container">
+            <button class="SidebarButton" data-ButtonName="@item.Name" onclick="location.href='@item.Action'">
+                <i class="@item.Icon"></i> @item.Name
+            </button>
+        </div>
+    }
+</div>
