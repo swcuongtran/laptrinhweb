@@ -1,0 +1,34 @@
+﻿@model IEnumerable<MVC.Models.Product>
+@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+    var categories = ViewData["Categories"] as IEnumerable<MVC.Models.Category>;
+}
+<h2>Danh sách sản phẩm</h2>
+
+<form method="get" asp-action="Index">
+    <input type="text" name="searchQuery" placeholder="Tìm kiếm sản phẩm..." />
+    <select name="categoryID">
+        <option value="">Tất cả danh mục</option>
+        @foreach (var category in categories)
+        {
+            <option value="@category.CategoryId">@category.Name</option>
+        }
+    </select>
+    <button type="submit">Tìm kiếm</button>
+</form>
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4">
+            <div class="card md-4 shadow-sm">
+                <div class="card-body">
+                    <h5>@product.Name</h5>
+                    <p>@product.Description</p>
+                    <p><strong>Giá:</strong> @product.Price.ToString("C")</p>
+                    <a href="@Url.Action("Details",new {id = product.ProductId})" class="btn btn-primary">Chi tiết</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

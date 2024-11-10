@@ -37,6 +37,21 @@ namespace MVC.Services.Implementation
                 _productRepository.Save();
             }
         }
+        public IEnumerable<Product> SearchProducts (string searchQuery,int? categoryID)
+        {
+            var query = _productRepository.GetAll().AsQueryable();
 
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                query = query.Where(p => p.Name.Contains(searchQuery) || p.Description.Contains(searchQuery));
+            }
+
+            if (categoryID.HasValue)
+            {
+                query = query.Where(p => p.CategoryId == categoryID.Value);
+            }
+
+            return query.ToList();
+        }
     }
 }

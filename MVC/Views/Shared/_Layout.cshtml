@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using MVC.Services.Implementation 
+@using MVC.Services.Interface
+@inject ICartService _cartService
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -47,6 +50,13 @@
                                 <a class="nav-link" asp-controller="Account" asp-action="Register">Đăng ký</a>
                             </li>
                         }
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Cart" asp-action="Index">
+                                <i class="fas fa-shopping-cart"></i> Giỏ hàng
+                                (@_cartService.GetCartItemCount()) <!-- Số lượng sản phẩm trong giỏ -->
+                            </a>
+                        </li>
                     </ul>
 
                 </div>
