@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Hồ Sơ Cá Nhân";
+    var user = ViewData["User"] as User;  // Giả sử bạn có một lớp User để chứa thông tin người dùng
+}
+
+<h2>Hồ Sơ Cá Nhân</h2>
+
+@if (user != null)   
+{
+    <p><strong>Tên:</strong> @user.Name</p>
+    <p><strong>Email:</strong> @user.Email</p>
+    <p><strong>Số điện thoại:</strong> @user.Phone</p>
+    <p><strong>Địa chỉ:</strong> @user.Address</p>
+    <!-- Thêm các thông tin khác muốn hiển thị -->
+}
+else
+{
+    <p>Ops! Có vẻ bạn chưa có tài khoản ,đăng kí ngay nào !</p>
+}

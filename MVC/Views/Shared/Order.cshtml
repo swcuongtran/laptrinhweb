@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Đơn Hàng";
+    var orders = ViewData["Orders"] as IEnumerable<MVC.Models.Order>;
+}
+
+<h2>Lịch sử đơn hàng</h2>
+
+@if (orders != null && orders.Any())  // Nếu đơn hàng không rỗng (tức là đã có hàng)
+{
+    <ul>
+        @foreach (var order in orders)
+        {
+            <li>  <!-- In thông tin các đơn hàng đã mua -->
+                <strong>Order ID:</strong> @order.OrderId<br />
+                <strong>Ngày đặt:</strong> @order.OrderDate.ToShortDateString()<br />
+                <strong>Trạng thái:</strong> @order.Status<br />
+                <strong>Tổng số tiền:</strong> @order.TotalAmount VND
+            </li>
+        }
+    </ul>
+}
+else // Nếu chưa có đơn hàng nào hết
+{
+    <p>Chưa có đơn hàng nào, đặt hàng ngay thôi!</p>
+}

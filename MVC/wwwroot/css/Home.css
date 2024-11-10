@@ -1,0 +1,72 @@
+
+/*Thiết kế CSS cho trang Home ,nằm ngay bên thanh Sidebar */
+
+
+.content { 
+   margin-left: 220px; /* Đẩy phần content sang phải tương ứng với độ rộng tối đa của Sidebar */
+   padding: 20px; flex: 1; /* Để container nội dung có thể nở ra theo độ rộng của cửa sổ */
+   overflow-y: auto;
+   background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Đặt màu nền để dễ quan sát */ 
+   z-index: 1;
+}
+/* Đảm bảo content không bị tràn qua Sidebar khi phóng to hoặc thu nhỏ cửa sổ */ 
+@media (min-width: 1920px) { 
+.content { 
+   margin-left: 220px; /* Điều chỉnh theo độ rộng của Sidebar */
+   } 
+} 
+@media (max-width: 770px) { 
+.content {
+      margin-left: 200px; /* Điều chỉnh theo độ rộng của Sidebar khi màn hình nhỏ hơn */ 
+   } 
+}
+
+/*========================================================================================================*/
+   .product-grid { 
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 331px); /* Đảm bảo các ô sản phẩm có kích thước cố định */ 
+      gap: 40px;
+      justify-content: center; /* Căn giữa các container sản phẩm bên trong grid */ 
+   }
+   .product-container { 
+      width: 300px; 
+      height: 500px; 
+      border: 1px solid #ddd;
+      margin-left:12px;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative; 
+      
+   }
+   .product-image { 
+      width: 100%;
+      height: 70%; /* Top: 60% */
+      overflow: hidden; 
+      text-align: center; 
+   }
+   .product-image img { 
+      width: 100%;
+      height: auto; 
+   }
+   .product-info { 
+      padding: 10px 0;
+      
+   }
+   .product-info h3 {
+   font-size: 1.2em;
+   margin: 0;
+   } 
+   .product-info p { 
+   margin: 5px 0;
+   } 
+   .view-details {
+   background-color: #007bff; 
+   color: white;
+   border: none;
+   padding: 5px 10px; 
+   cursor: pointer;
+   border-radius: 3px;
+   }
+   .view-details:hover {
+   background-color: #0056b3; 
+   }

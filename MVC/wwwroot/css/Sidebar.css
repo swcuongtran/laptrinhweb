@@ -2,13 +2,17 @@ body{
    margin : 0px ;
    height: 100vh;
    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+   display : flex ;
+   flex-direction: column;
    
 }
+
+.wrapper { display: flex; height : 100% ;width: 100%;}
 
 .Sidebar{   /*Thanh sidebar sắp xếp các container chứa các nút */
    position: fixed; /*Cho thanh này nằm cố định */
    background-color: #333333; /* Màu không trong suốt */
-   width: 10%;  /*Độ rộng chiếm 10% màn hình */
+   /*width: 10%;  /*Độ rộng chiếm 10% màn hình */
    height: 100vh ;  /*Chiều cao chiếm toàn bộ màn hình */
 
    display: flex;   /*Container sidebar sẽ mang tính chất của FlexBox -> các phần tử bên trong nó cx phải theo định dạng của nó */
@@ -17,9 +21,9 @@ body{
    
    margin: 0px ; 
    min-width: 190px; /*Chiều rộng tối thiểu của sidebar ( tránh lỗi tràn hiển thị khi cửa sổ bị thu hẹp ) */
-   max-width: 220px;
+   
 
-   z-index: 1;
+   z-index: 2;
 }
 .button-container {   /*Container chứa button */
    position: relative;
@@ -53,7 +57,7 @@ body{
 
    transition: 0.3s ease;
 
-   z-index: 2;
+   z-index: 3;
    
 }
 /*================================================================================================*/
@@ -70,7 +74,7 @@ body{
    cursor: pointer;
    transition: 1s ease;
 
-   z-index: 0; /* Giảm z-index để đồng bộ màu với background*/
+   z-index: 9; /* Giảm z-index để đồng bộ màu với background*/
 }
 
 .SidebarButton i {    /*Lớp định nghĩa kiểu mặc định biểu tượng bên trong nút */
@@ -161,3 +165,6 @@ body{
    transition: opacity 0.3s ,0.7s ease-in-out  /* Hiệu ứng di chuyển mượt mà */ 
 }
 
+
+
+/*================================================================================================*/

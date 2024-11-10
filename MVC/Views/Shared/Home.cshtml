@@ -1,0 +1,36 @@
+@model IEnumerable<MVC.Models.Product>
+
+<div class="wrapper">
+    <div class="Sidebar">
+        <div class="button-container">
+            <button class="SidebarButton" data-ButtonName="Homepage"><i class="fas fa-home"></i></button>
+        </div>
+        <div class="button-container">
+            <button class="SidebarButton" data-ButtonName="Order"><i class="fas fa-shopping-cart"></i></button>
+        </div>
+        <div class="button-container">
+            <button class="SidebarButton" data-ButtonName="Personal"><i class="fas fa-user"></i></button>
+        </div>
+        <div class="button-container">
+            <button class="SidebarButton" data-ButtonName="Setting"><i class="fas fa-cog"></i></button>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="product-grid">
+            @foreach (var product in Model)
+            {
+                <div class="product-container">
+                    <div class="product-image">
+                        <img src="@product.ImageUrl" alt="@product.Name">
+                    </div>
+                    <div class="product-info">
+                        <h3>@product.Name</h3>
+                        <p>Giá: @product.Price VND</p>
+                        <a class="view-details" href="@Url.Action("Details", "Home", new { id = product.Id })">Xem chi tiết</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

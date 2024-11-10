@@ -1,0 +1,40 @@
+@model MVC.Models.Product
+
+<div class="modal-container" id="productModal">
+    <button class="close-button" onclick="closeModal()">×</button>
+    <div class="modal-content">
+        <div class="modal-left">
+            <img src="@Model.ImageUrl" alt="@Model.Name">
+        </div>
+        <div class="modal-right">
+            <div class="product-details">
+                <h2>@Model.Name</h2>
+                <p>@Model.Description</p>
+                <p>Giá: @Model.Price VND</p>
+            </div>
+            <div class="order-section">
+                <div class="quantity">
+                    <label for="quantity">Số lượng:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1">
+                </div>
+                <div class="total-price">Thành tiền: @Model.Price VND</div>
+                <form method="post" action="@Url.Action("Order", "Order")">
+                    <input type="hidden" name="productId" value="@Model.ProductId" />
+                    <input type="hidden" name="quantity" id="hiddenQuantity" value="1" />
+                    <button type="submit" onclick="setQuantity()">Order Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function closeModal() {
+    document.getElementById("productModal").style.display = "none";
+}
+
+function setQuantity() {
+    var quantity = document.getElementById("quantity").value;
+    document.getElementById("hiddenQuantity").value = quantity;
+}
+</script>
