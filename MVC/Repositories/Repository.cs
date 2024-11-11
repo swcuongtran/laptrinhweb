@@ -51,5 +51,24 @@ namespace MVC.Repositories
         {
             _context.SaveChanges();  // Lưu thay đổi vào cơ sở dữ liệu
         }
+        public T GetById(Guid id)
+        {
+            return _context.Set<T>().Find(id); // Dùng Find để lấy thực thể theo GUID
+        }
+        public T FindSingle(Expression<Func<T, bool>> predicate)
+        {
+            return _entities.FirstOrDefault(predicate);
+        }
+        public IEnumerable<T> GetAllWithIncludes(params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = _entities;
+
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);  // Bao gồm các mối quan hệ
+            }
+
+            return query.ToList();
+        }
     }
 }

@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using MVC.Models;
 namespace MVC.Data
 {
-    public class AppDbContext: IdentityDbContext<IdentityUser>
+    public class AppDbContext : IdentityDbContext<IdentityUser>
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options): base(options) { }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<Bill> Bills { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -141,6 +141,12 @@ namespace MVC.Data
                 .HasForeignKey(od => od.OptionId)
                 .OnDelete(DeleteBehavior.Restrict);  // Hạn chế xóa Option nếu có OptionDetail
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Customer>()
+        .HasOne(c => c.User) // Liên kết với IdentityUser
+        .WithOne()
+        .HasForeignKey<Customer>(c => c.UserId)
+        .IsRequired();
         }
     }
 }

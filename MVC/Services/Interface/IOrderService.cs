@@ -9,5 +9,6 @@ namespace MVC.Services.Interface
         void CreateOrder(Order order);
         void UpdateOrder(Order order);
         void DeleteOrder(int id);
+        Order GetOrderWithDetails(int id);
     }
 }

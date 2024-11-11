@@ -17,5 +17,14 @@ namespace MVC.Models
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Mật khẩu và mật khẩu xác nhận không khớp.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string Username { get; set; }
+
+        [Required]
+        public string Address { get; set; }
+
+        [Phone]
+        public string Phone { get; set; }
     }
 }

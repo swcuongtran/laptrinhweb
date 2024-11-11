@@ -37,5 +37,11 @@ namespace MVC.Services.Implementation
                 _orderRepository.Save();
             }
         }
+        public Order GetOrderWithDetails(int id)
+        {
+            var order = _orderRepository.GetAllWithIncludes(o => o.OrderDetails)
+                         .FirstOrDefault(o => o.OrderId == id);
+            return order;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MVC.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MVC.Models;
 using MVC.Repositories;
 using MVC.Services.Interface;
 namespace MVC.Services.Implementation
@@ -14,7 +15,7 @@ namespace MVC.Services.Implementation
 
         public IEnumerable<Customer> GetAllCustomers() => _customerRepository.GetAll();
 
-        public Customer GetCustomerById(int id) => _customerRepository.GetById(id);
+        public Customer GetCustomerById(Guid id) => _customerRepository.GetById(id);
 
         public void CreateCustomer(Customer customer)
         {
@@ -36,6 +37,11 @@ namespace MVC.Services.Implementation
                 _customerRepository.Delete(customer);
                 _customerRepository.Save();
             }
+        }
+        public Customer GetCustomerByUserId(string userId)
+        {
+            // Tìm Customer theo UserId (chuỗi)
+            return _customerRepository.FindSingle(c => c.UserId == userId);
         }
     }
 }
