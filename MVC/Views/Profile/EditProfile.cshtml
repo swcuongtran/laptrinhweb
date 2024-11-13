@@ -1,0 +1,29 @@
+﻿@model MVC.DTOs.UserProfileDTO
+
+@{
+    ViewData["Title"] = "Cập nhật thông tin cá nhân";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cập nhật thông tin cá nhân</h2>
+
+<form asp-action="EditProfile" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label>Tên</label>
+        <input asp-for="Customer.Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input asp-for="Customer.Email" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label>Địa chỉ</label>
+        <input asp-for="Customer.Address" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Số điện thoại</label>
+        <input asp-for="Customer.Phone" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Cập nhật</button>
+</form>

@@ -38,8 +38,8 @@ namespace MVC.Repositories
 
         public void Update(T entity)
         {
-            _entities.Attach(entity);  // Gắn thực thể để cập nhật
-            _context.Entry(entity).State = EntityState.Modified;
+            _context.Set<T>().Update(entity);  // Cập nhật toàn bộ thực thể
+            _context.SaveChanges();  // Lưu thay đổi
         }
 
         public void Delete(T entity)
