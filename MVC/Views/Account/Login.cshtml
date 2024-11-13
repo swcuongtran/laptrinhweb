@@ -1,21 +1,118 @@
 ﻿@model MVC.Models.LoginViewModel
 
-<h2>Đăng nhập</h2>
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
 
-<form asp-action="Login" method="post">
-    <div class="form-group">
-        <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
+<!-- CSS để căn giữa form và tạo kiểu -->
+<style>
+    /* Container dùng Flexbox để căn giữa form */
+    .login-container {
+        display: flex; /* Sử dụng Flexbox để căn giữa */
+        justify-content: center; /* Căn giữa theo chiều ngang */
+        align-items: center; /* Căn giữa theo chiều dọc */
+        height: 100vh; /* Chiều cao đầy đủ của viewport */
+        background-color: #f8f9fa; /* Màu nền nhạt */
+    }
+
+    /* Form đăng nhập */
+    .login-form {
+        background-color: white; /* Nền trắng cho form */
+        padding: 30px; /* Khoảng cách nội dung trong form */
+        border-radius: 8px; /* Bo tròn góc form */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Tạo bóng đổ nhẹ cho form */
+        width: 100%; /* Chiều rộng 100% */
+        max-width: 400px; /* Chiều rộng tối đa là 400px */
+    }
+
+    /* Căn chỉnh khoảng cách cho mỗi phần tử form */
+    .form-group {
+        margin-bottom: 15px; /* Khoảng cách dưới mỗi nhóm form */
+    }
+
+    /* Kiểu cho nhãn của checkbox (Ghi nhớ tài khoản) */
+    .form-check-label {
+        font-size: 0.9em; /* Cỡ chữ nhỏ hơn một chút */
+    }
+
+    /* Kiểu cho nút đăng nhập */
+    .btn {
+        width: 100%; /* Nút chiếm đầy chiều rộng */
+        padding: 10px; /* Khoảng cách bên trong nút */
+        font-size: 1.1em; /* Cỡ chữ lớn hơn một chút */
+    }
+
+    /* Kiểu cho các nút đăng nhập mạng xã hội */
+    .social-btn {
+        display: inline-block; /* Hiển thị các nút theo dòng ngang */
+        width: 48%; /* Chiếm 48% chiều rộng để có thể vừa 2 nút trên cùng một dòng */
+        padding: 10px; /* Khoảng cách bên trong nút */
+        text-align: center; /* Canh giữa chữ trong nút */
+        border-radius: 5px; /* Bo tròn góc nút */
+        color: white; /* Màu chữ trắng */
+        margin: 5px; /* Khoảng cách giữa các nút */
+        cursor: pointer; /* Thay đổi con trỏ khi hover */
+        font-size: 1em; /* Cỡ chữ cho nút */
+    }
+
+    /* Màu nền cho nút Google */
+    .btn-google {
+        background-color: #db4437; /* Màu nền đỏ của Google */
+    }
+
+    /* Màu nền cho nút Facebook */
+    .btn-facebook {
+        background-color: #3b5998; /* Màu nền xanh của Facebook */
+    }
+
+    /* Màu nền cho nút LinkedIn */
+    .btn-linkedin {
+        background-color: #0077b5; /* Màu nền xanh dương của LinkedIn */
+    }
+</style>
+
+<!-- Container để chứa form đăng nhập -->
+<div class="login-container">
+    <!-- Form đăng nhập -->
+    <div class="login-form">
+        <h2 class="text-center">Đăng nhập</h2> <!-- Tiêu đề form -->
+        <!-- Form nhập thông tin -->
+        <form asp-action="Login" method="post">
+            <!-- Nhóm nhập Email -->
+            <div class="form-group">
+                <label asp-for="Email"></label> <!-- Nhãn cho ô nhập Email -->
+                <input asp-for="Email" class="form-control" /> <!-- Ô nhập Email -->
+                <span asp-validation-for="Email" class="text-danger"></span> <!-- Hiển thị thông báo lỗi nếu có -->
+            </div>
+
+            <!-- Nhóm nhập mật khẩu -->
+            <div class="form-group">
+                <label asp-for="Password" class="d-block mb-2">Mật khẩu</label> <!-- Nhãn cho ô nhập Mật khẩu -->
+                <input asp-for="Password" class="form-control" type="password" /> <!-- Ô nhập Mật khẩu -->
+                <span asp-validation-for="Password" class="text-danger"></span> <!-- Hiển thị thông báo lỗi nếu có -->
+            </div>
+
+            <!-- Nhóm checkbox "Ghi nhớ tài khoản" -->
+            <div class="form-group form-check">
+                <input asp-for="RememberMe" class="form-check-input" /> <!-- Checkbox Ghi nhớ tài khoản -->
+                <label asp-for="RememberMe" class="form-check-label">Ghi nhớ tài khoản</label> <!-- Nhãn cho checkbox -->
+            </div>
+
+            <!-- Nút đăng nhập -->
+            <button type="submit" class="btn btn-primary">Đăng nhập</button>
+        </form>
+
+        <!-- Các nút đăng nhập qua mạng xã hội -->
+        <div class="text-center mt-3">
+            <p>Hoặc đăng nhập bằng:</p>
+            <div class="social-btn btn-google">Google</div> <!-- Nút đăng nhập Google -->
+            <div class="social-btn btn-facebook">Facebook</div> <!-- Nút đăng nhập Facebook -->
+            <div class="social-btn btn-linkedin">LinkedIn</div> <!-- Nút đăng nhập LinkedIn -->
+        </div>
+
+        <!-- Liên kết "Quên mật khẩu" và "Đăng ký tài khoản" -->
+        <div class="text-center mt-3">
+            <a href="#">Quên mật khẩu?</a> | <a href="#">Đăng ký tài khoản</a> <!-- Liên kết cho quên mật khẩu và đăng ký -->
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="Password"></label>
-        <input asp-for="Password" class="form-control" type="password" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-    <div class="form-group form-check">
-        <input asp-for="RememberMe" class="form-check-input" />
-        <label asp-for="RememberMe" class="form-check-label">Ghi nhớ tài khoản</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Đăng nhập</button>
-</form>
+</div>
