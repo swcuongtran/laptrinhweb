@@ -2,6 +2,8 @@
     ViewData["Title"] = "Trang chủ";
     var products = ViewData["Products"] as IEnumerable<MVC.Models.Product>;
     var categories = ViewData["Categories"] as IEnumerable<MVC.Models.Category>;
+    var searchQuery = ViewData["SearchQuery"] as string;
+    var categoryId = ViewData["CategoryID"] as int?;
 }
 
 <div class="container mt-5">
@@ -12,35 +14,55 @@
         <a class="btn btn-primary btn-lg" href="/Product/Index" role="button">Xem Sản Phẩm</a>
     </div>
 
-    <!-- Hiển thị danh mục sản phẩm -->
-    <div class="row mt-5">
-        <h2>Danh mục sản phẩm</h2>
-        <div class="col-12">
-            <div class="row">
-                @if (categories != null && categories.Any())
-                {
-                    @foreach (var category in categories)
+    <!-- Thanh tìm kiếm và lọc theo danh mục -->
+    <div class="row">
+        <div class="col-md-4">
+            <form method="get" asp-action="Index">
+                <input type="text" name="search" placeholder="Tìm kiếm sản phẩm..." value="@searchQuery" class="form-control mb-2" />
+                @Html.DropDownList("categoryID", new SelectList(categories, "CategoryId", "Name", categoryId), "Tất cả danh mục", new { @class = "form-control mb-2" })
+
+                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+            </form>
+        </div>
+
+        <!-- Hiển thị sản phẩm tìm kiếm -->
+        <div class="row mt-5">
+            <h2>Sản phẩm tìm kiếm</h2>
+            <div class="col-12">
+                <div class="row">
+                    @if (!string.IsNullOrEmpty(searchQuery) || categoryId.HasValue) // Chỉ hiển thị nếu có tìm kiếm hoặc lọc theo danh mục
                     {
-                        <div class="col-md-4 mb-3">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">@category.Name</h5>
-                                    <p class="card-text">@category.Description</p>
-                                    <a href="/Products?categoryId=@category.CategoryId" class="btn btn-info">Xem sản phẩm</a>
+                        @if (products != null && products.Any())
+                        {
+                            @foreach (var product in products)
+                            {
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@product.Name</h5>
+                                            <p class="card-text">@product.Description</p>
+                                            <p class="card-text"><strong>Giá:</strong> @product.Price.ToString("C")</p>
+                                            <a href="/Products/Details/@product.ProductId" class="btn btn-primary">Chi tiết</a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            }
+                        }
+                        else
+                        {
+                            <p>Không có sản phẩm nào được tìm thấy.</p>
+                        }
                     }
-                }
-                else
-                {
-                    <p>Không có danh mục nào được tìm thấy. Hãy thêm một danh mục mới!</p>
-                }
+                    else
+                    {
+                        <p>Vui lòng nhập từ khóa để tìm kiếm hoặc chọn danh mục.</p>
+                    }
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Hiển thị sản phẩm nổi bật -->
+    <!-- Hiển thị sản phẩm nổi bật (không có tìm kiếm) -->
     <div class="row mt-5">
         <h2>Sản phẩm nổi bật</h2>
         <div class="col-12">
@@ -63,7 +85,7 @@
                 }
                 else
                 {
-                    <p>Không có sản phẩm nào được tìm thấy. Hãy thêm một sản phẩm mới!</p>
+                    <p>Không có sản phẩm nổi bật.</p>
                 }
             </div>
         </div>

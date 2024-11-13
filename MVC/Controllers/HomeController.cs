@@ -16,18 +16,23 @@ namespace MVC.Controllers
             _categoryService = categoryService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string search = "", int? categoryId = null)
         {
-            // L?y danh sách s?n ph?m và danh m?c t? các Service
-            var products = _productService.GetAllProducts();
+            
             var categories = _categoryService.GetAllCategories();
 
-            // ?óng gói vào ViewModel ho?c ViewData
+            
+            var products = _productService.SearchProducts(search, categoryId);
+
+            
             ViewData["Products"] = products;
             ViewData["Categories"] = categories;
+            ViewData["SearchQuery"] = search; 
+            ViewData["CategoryID"] = categoryId;
 
             return View();
         }
+
 
         public IActionResult Privacy()
         {

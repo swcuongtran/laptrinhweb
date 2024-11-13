@@ -78,7 +78,17 @@ namespace MVC.Controllers
                     var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, lockoutOnFailure: false);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index", "Home");
+                        // Kiểm tra xem người dùng có vai trò Admin không
+                        if (await _userManager.IsInRoleAsync(user, "Admin"))
+                        {
+                            // Chuyển hướng đến Admin Dashboard
+                            return RedirectToAction("Dashboard", "Admin");
+                        }
+                        else
+                        {
+                            // Chuyển hướng đến trang Home cho người dùng bình thường
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
 
                 }

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MVC.Data;
 using MVC.Repositories;
@@ -59,6 +59,28 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseAuthentication();
+
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+    // Kiểm tra và tạo vai trò Admin
+    if (!await roleManager.RoleExistsAsync("Admin"))
+    {
+        await roleManager.CreateAsync(new IdentityRole("Admin"));
+    }
+
+    // Tạo tài khoản Admin mẫu nếu cần
+    var adminEmail = "admin@gmail.com";
+    var adminUser = await userManager.FindByEmailAsync(adminEmail);
+    if (adminUser == null)
+    {
+        adminUser = new IdentityUser { UserName = adminEmail, Email = adminEmail };
+        await userManager.CreateAsync(adminUser, "Adminpassword123!");
+        await userManager.AddToRoleAsync(adminUser, "Admin");
+    }
+}
 
 app.UseAuthorization();
 
