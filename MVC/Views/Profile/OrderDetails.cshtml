@@ -1,0 +1,44 @@
+﻿@model MVC.Models.Order
+@{
+    ViewData["Title"] = "OrderDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>OrderDetails</h1>
+<h2>Chi Tiết Đơn Hàng</h2>
+
+<div>
+    <h3>Thông Tin Đơn Hàng</h3>
+    <p><strong>Mã Đơn Hàng:</strong> @Model.OrderId</p>
+    <p><strong>Ngày Đặt:</strong> @Model.OrderDate.ToString("dd/MM/yyyy")</p>
+    <p><strong>Tổng Số Tiền:</strong> @Model.TotalAmount.ToString("C")</p>
+    <p><strong>Trạng Thái:</strong> @Model.Status.ToString()</p>
+</div>
+
+<div>
+    <h3>Chi Tiết Các Sản Phẩm</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Sản Phẩm</th>
+                <th>Số Lượng</th>
+                <th>Giá</th>
+                <th>Tổng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var detail in Model.OrderDetails)
+            {
+                <tr>
+                    <td>@detail.ProductName</td>
+                    <td>@detail.Quantity</td>
+                    <td>@detail.UnitPrice.ToString("C")</td>
+                    <td>@(detail.Quantity * detail.UnitPrice)</td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<a href="@Url.Action("Index", "Profile")">Quay lại hồ sơ</a>

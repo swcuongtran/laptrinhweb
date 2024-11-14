@@ -23,7 +23,7 @@
         @foreach (var item in Model.OrderDetails)
         {
             <tr>
-                <td>@item.ProductId</td>
+                <td>@item.ProductName</td>
                 <td>@item.Quantity</td>
                 <td>@item.UnitPrice.ToString("C")</td>
                 <td>@item.Subtotal.ToString("C")</td>

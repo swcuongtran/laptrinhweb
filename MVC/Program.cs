@@ -65,15 +65,21 @@ using (var scope = app.Services.CreateScope())
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-    // Kiểm tra và tạo vai trò Admin
+    // Khởi tạo người dùng và vai trò Admin một cách bất đồng bộ
+    await InitializeRolesAndUsers(roleManager, userManager);
+}
+
+ async Task InitializeRolesAndUsers(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
+{
+    // Kiểm tra và tạo vai trò Admin nếu không tồn tại
     if (!await roleManager.RoleExistsAsync("Admin"))
     {
         await roleManager.CreateAsync(new IdentityRole("Admin"));
     }
 
-    // Tạo tài khoản Admin mẫu nếu cần
     var adminEmail = "admin@gmail.com";
     var adminUser = await userManager.FindByEmailAsync(adminEmail);
+
     if (adminUser == null)
     {
         adminUser = new IdentityUser { UserName = adminEmail, Email = adminEmail };
@@ -81,6 +87,8 @@ using (var scope = app.Services.CreateScope())
         await userManager.AddToRoleAsync(adminUser, "Admin");
     }
 }
+
+
 
 app.UseAuthorization();
 

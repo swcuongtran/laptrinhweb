@@ -27,6 +27,8 @@
             <li class="list-group-item">
                 <strong>Đơn hàng số:</strong> @order.OrderId -
                 <strong>Ngày đặt:</strong> @order.OrderDate.ToString("dd/MM/yyyy")
+                <p>Trạng thái: @order.Status.ToString()</p>
+                <a href="@Url.Action("OrderDetails", "Profile", new { orderId = order.OrderId })">Xem chi tiết</a>
             </li>
         }
     </ul>

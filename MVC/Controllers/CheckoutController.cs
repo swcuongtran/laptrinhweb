@@ -72,7 +72,7 @@ namespace MVC.Controllers
                 CustomerId = customer.CustomerId, // Sử dụng customerGuid (GUID hợp lệ)
                 OrderDate = DateTime.Now,
                 TotalAmount = cartItem.Sum(i => i.Total),
-                Status = "Pending",
+                Status = OrderStatus.Pending,
             };
 
             // Lưu đơn hàng vào database
@@ -83,6 +83,7 @@ namespace MVC.Controllers
             {
                 var orderDetail = new OrderDetail
                 {
+                    ProductName = cart.ProductName,
                     OrderId = order.OrderId, // Đảm bảo OrderId của đơn hàng đã được lưu vào Order trước
                     ProductId = cart.ProductId,
                     Quantity = cart.Quantity,

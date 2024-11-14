@@ -101,5 +101,30 @@ namespace MVC.Controllers
 
             return View(model);
         }
+        public async Task<IActionResult> OrderDetails(int orderId)
+        {
+            var userId = _userManager.GetUserId(User);
+            if (userId == null)
+            {
+                return Unauthorized("Bạn cần đăng nhập để xem chi tiết đơn hàng.");
+            }
+
+            // Lấy thông tin khách hàng từ userId
+            var customer = _customerService.GetCustomerByUserId(userId);
+            if (customer == null)
+            {
+                return NotFound("Không tìm thấy thông tin người dùng.");
+            }
+
+            // Lấy chi tiết đơn hàng
+            var order = _orderService.GetOrderWithDetails(orderId);
+            if (order == null || order.CustomerId != customer.CustomerId)
+            {
+                return NotFound("Không tìm thấy đơn hàng hoặc bạn không có quyền truy cập.");
+            }
+
+            return View(order);  // Trả về view hiển thị chi tiết đơn hàng
+        }
+
     }
 }
