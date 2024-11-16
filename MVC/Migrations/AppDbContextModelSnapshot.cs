@@ -47,7 +47,7 @@ namespace MVC.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("Bills");
+                    b.ToTable("Bills", (string)null);
                 });
 
             modelBuilder.Entity("MVC.Models.Category", b =>
@@ -72,7 +72,7 @@ namespace MVC.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("MVC.Models.Customer", b =>
@@ -112,7 +112,7 @@ namespace MVC.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("MVC.Models.Option", b =>
@@ -137,7 +137,7 @@ namespace MVC.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Options");
+                    b.ToTable("Options", (string)null);
                 });
 
             modelBuilder.Entity("MVC.Models.OptionDetail", b =>
@@ -165,7 +165,7 @@ namespace MVC.Migrations
 
                     b.HasIndex("OrderDetailId");
 
-                    b.ToTable("OptionDetails");
+                    b.ToTable("OptionDetails", (string)null);
                 });
 
             modelBuilder.Entity("MVC.Models.Order", b =>
@@ -192,7 +192,7 @@ namespace MVC.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("MVC.Models.OrderDetail", b =>
@@ -228,7 +228,7 @@ namespace MVC.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetails");
+                    b.ToTable("OrderDetails", (string)null);
                 });
 
             modelBuilder.Entity("MVC.Models.Product", b =>
@@ -257,7 +257,7 @@ namespace MVC.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

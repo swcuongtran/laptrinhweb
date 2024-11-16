@@ -1,0 +1,66 @@
+﻿@model MVC.Models.Product
+@{
+    ViewData["Title"] = "Thêm sản phẩm mới";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var categories = ViewData["Categories"] as IEnumerable<MVC.Models.Category>;
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Thêm sản phẩm mới</h1>
+
+    <!-- Hiển thị thông báo nếu có -->
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    <div asp-validation-summary="All" class="alert alert-danger"></div>
+    <form asp-action="Create" method="post">
+        
+
+        <div class="mb-3">
+            <label for="Name" class="form-label">Tên sản phẩm</label>
+            <input type="text" class="form-control" asp-for="Name" />
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="Price" class="form-label">Giá</label>
+            <input type="number" class="form-control" asp-for="Price" />
+            <span class="text-danger" asp-validation-for="Price"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="CategoryId" class="form-label">Danh mục</label>
+            <select class="form-select" asp-for="CategoryId">
+                <option value="">Chọn danh mục</option>
+                @foreach (var category in categories)
+                {
+                    <option value="@category.CategoryId">@category.Name</option>
+                }
+            </select>
+            <span class="text-danger" asp-validation-for="CategoryId"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="Description" class="form-label">Mô tả</label>
+            <textarea class="form-control" asp-for="Description" rows="4"></textarea>
+            <span class="text-danger" asp-validation-for="Description"></span>
+        </div>
+
+        <button type="submit" class="btn btn-success"><i class="bx bx-save"></i> Lưu sản phẩm</button>
+        <a href="@Url.Action("Index", "Product")" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>
+
+@section Scripts {
+    @* Validation Scripts *@
+    <partial name="_ValidationScriptsPartial" />
+}

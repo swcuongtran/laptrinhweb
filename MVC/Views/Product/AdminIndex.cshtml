@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MVC.Models.Product>
+@{
+    ViewData["Title"] = "Quản lý Sản phẩm";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var categories = ViewData["Categories"] as IEnumerable<MVC.Models.Category>;
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h3">Quản lý Sản phẩm</h1>
+        <a href="@Url.Action("Create")" class="btn btn-success"><i class="bx bx-plus"></i> Thêm sản phẩm</a>
+    </div>
+
+    <!-- Tìm kiếm -->
+    <form method="get" asp-action="Index" class="mb-4">
+        <div class="row g-2">
+            <div class="col-md-6">
+                <input type="text" name="searchQuery" class="form-control" placeholder="Tìm kiếm sản phẩm..." />
+            </div>
+            <div class="col-md-4">
+                <select name="categoryID" class="form-select">
+                    <option value="">Tất cả danh mục</option>
+                    @foreach (var category in categories)
+                    {
+                        <option value="@category.CategoryId">@category.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100"><i class="bx bx-search"></i> Tìm kiếm</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Danh sách sản phẩm -->
+    <div class="row">
+        @if (Model.Any())
+        {
+            @foreach (var product in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="card-text text-truncate" title="@product.Description">@product.Description</p>
+                            <p><strong>Giá:</strong> @product.Price.ToString("C")</p>
+                            <div class="d-flex justify-content-between">
+                                <a href="@Url.Action("Details", new { id = product.ProductId })" class="btn btn-primary btn-sm"><i class="bx bx-info-circle"></i> Chi tiết</a>
+                                <a href="@Url.Action("Edit", new { id = product.ProductId })" class="btn btn-warning btn-sm"><i class="bx bx-edit"></i> Sửa</a>
+                                <form method="post" asp-action="Delete" asp-route-id="@product.ProductId" onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này?');" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="bx bx-trash"></i> Xóa</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <p class="text-muted">Không có sản phẩm nào phù hợp với tìm kiếm.</p>
+            </div>
+        }
+    </div>
+</div>

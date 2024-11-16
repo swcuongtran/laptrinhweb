@@ -43,5 +43,19 @@ namespace MVC.Services.Implementation
             // Tìm Customer theo UserId (chuỗi)
             return _customerRepository.FindSingle(c => c.UserId == userId);
         }
+        public IEnumerable<Customer> GetCustomersByName(string name)
+        {
+            // Kiểm tra xem tên khách hàng có rỗng hay không
+            if (string.IsNullOrEmpty(name))
+            {
+                return Enumerable.Empty<Customer>(); // Nếu tên rỗng, trả về danh sách trống
+            }
+
+            // Sử dụng phương thức `Contains` để tìm các khách hàng có tên chứa chuỗi tìm kiếm
+            return _customerRepository.GetAll()
+                                      .Where(c => c.Name.Contains(name, StringComparison.OrdinalIgnoreCase)) // Tìm kiếm không phân biệt chữ hoa và chữ thường
+                                      .ToList();
+        }
+
     }
 }

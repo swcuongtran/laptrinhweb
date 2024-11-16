@@ -10,5 +10,6 @@ namespace MVC.Services.Interface
         void UpdateCustomer(Customer customer);
         void DeleteCustomer(int id);
         Customer GetCustomerByUserId(string userId);
+        IEnumerable<Customer> GetCustomersByName(string name);
     }
 }

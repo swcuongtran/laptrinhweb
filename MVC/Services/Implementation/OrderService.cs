@@ -14,7 +14,7 @@ namespace MVC.Services.Implementation
 
         public IEnumerable<Order> GetAllOrders() => _orderRepository.GetAll();
 
-        public Order GetOrderById(Guid id) => _orderRepository.GetById(id);
+        public Order GetOrderById(int id) => _orderRepository.GetById(id);
 
         public void CreateOrder(Order order)
         {
@@ -46,6 +46,10 @@ namespace MVC.Services.Implementation
         public IEnumerable<Order> GetOrdersByCustomerId(Guid customerId)
         {
             return _orderRepository.Find(o => o.CustomerId == customerId); // Lấy tất cả đơn hàng của khách hàng theo CustomerId
+        }
+        public IEnumerable<Order> GetOrdersByCustomerIds(List<Guid> customerIds)
+        {
+            return _orderRepository.Find(o => customerIds.Contains(o.CustomerId)); // Lọc tất cả các đơn hàng của khách hàng theo danh sách customerId
         }
     }
 }

@@ -1,0 +1,13 @@
+﻿@model MVC.Models.Product
+@{
+    ViewData["Title"] = "AdminDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+<h1>Product Details</h1>
+<p>Name: @Model.Name</p>
+<p>Price: @Model.Price</p>
+<p>Description: @Model.Description</p>
+
+<a href="@Url.Action("Index", "Product")" class="btn btn-secondary">Back</a>
+

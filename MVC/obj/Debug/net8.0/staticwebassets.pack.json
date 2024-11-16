@@ -9,8 +9,16 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\css\\stylekhai.css",
+      "PackagePath": "staticwebassets\\css\\stylekhai.css"
+    },
+    {
       "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\js\\scriptkhai.js",
+      "PackagePath": "staticwebassets\\js\\scriptkhai.js"
     },
     {
       "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\js\\site.js",
