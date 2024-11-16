@@ -12,7 +12,7 @@ namespace MVC.Services.Implementation
             _orderRepository = orderRepository;
         }
 
-        public IEnumerable<Order> GetAllOrders() => _orderRepository.GetAll();
+        public IEnumerable<Order> GetAllOrders() => _orderRepository.GetAllWithIncludes(o=>o.Customer);
 
         public Order GetOrderById(int id) => _orderRepository.GetById(id);
 
