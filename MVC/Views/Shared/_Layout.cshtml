@@ -1,88 +1,112 @@
-﻿@using MVC.Services.Implementation
-@using MVC.Services.Interface
-@inject ICartService _cartService
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MVC</title>
+﻿@{
+    Layout = null;
+}
 
-    <!-- Liên kết đến các file CSS -->
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/MVC.styles.css" asp-append-version="true" />
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] | Ecommerce Website</title>
+    <link rel="stylesheet" href="~/css/style.css"> <!-- Sử dụng đường dẫn ảo để chỉ đến file CSS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <header>
-        <!-- Navigation bar -->
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MVC</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ms-auto">
-                        @if (User.Identity.IsAuthenticated)
+    <!-- Header section -->
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="~/"><img src="~/images/logo.png" width="125px" /></a>
+                </div>
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a href="/Home/Index">Home</a></li>
+                        <li><a href="Product/Index">Products</a></li>
+                        <li><a href="~/about">About</a></li>
+                        <li><a href="~/contact">Contact</a></li>
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="@Url.Action("Index", "Profile")">Xin chào, @User.Identity.Name</a>
+                                <span class="nav-link">Hello, @User.Identity.Name</span>
                             </li>
                             <li class="nav-item">
-                                <form asp-action="Logout" asp-controller="Account" method="post">
-                                    <button type="submit" class="btn btn-link nav-link">Đăng xuất</button>
+                                <form method="post" asp-controller="Account" asp-action="Logout">
+                                    <button type="submit" class="btn btn-link nav-link">Log Out</button>
                                 </form>
                             </li>
                         }
                         else
                         {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Account" asp-action="Login">Đăng nhập</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Account" asp-action="Register">Đăng ký</a>
-                            </li>
+                            <li><a class="dropdown-item" href="~/Account/Register">Register</a></li>
+                            <li><a class="dropdown-item" href="~/Account/Login">Login</a></li>
                         }
+                    </ul>
+                </nav>
+                <a href="~/cart"><img src="~/images/cart.png" width="30px" height="30px" /></a>
+                <img src="~/images/menu.png" class="menu-icon" onClick="menutoggle()" />
+            </div>
+        </div>
+    </div>
 
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Cart" asp-action="Index">
-                                <i class="fas fa-shopping-cart"></i> Giỏ hàng
-                                (@_cartService.GetCartItemCount()) <!-- Hiển thị số lượng sản phẩm trong giỏ -->
-                            </a>
-                        </li>
+    <!-- Main content section where content from each view will be inserted -->
+    <div class="content">
+        @RenderBody() <!-- Đây là nơi nội dung của từng view con sẽ được render -->
+    </div>
+
+    <!-- Footer section -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and ios mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="~/images/play-store.png" alt="" />
+                        <img src="~/images/app-store.png" alt="" />
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="~/images/logo-white.png">
+                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>Youtube</li>
                     </ul>
                 </div>
             </div>
-        </nav>
-    </header>
-
-    <div class="container">
-        <!-- Content -->
-        <main role="main" class="pb-3">
-            @RenderBody()  <!-- Vùng nội dung sẽ được render ở đây -->
-        </main>
+            <hr />
+            <p class="copyright">Copyright 2021 - Apurba Kr. Pramanik</p>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-
-    <!-- JavaScript dependencies -->
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    <!-- Script for toggle menu -->
+    <script>
+        var menuItems = document.getElementById("MenuItems");
+        menuItems.style.maxHeight = "0px";
+        function menutoggle() {
+            if (menuItems.style.maxHeight == "0px") {
+                menuItems.style.maxHeight = "200px";
+            } else {
+                menuItems.style.maxHeight = "0px";
+            }
+        }
+    </script>
 </body>
 </html>

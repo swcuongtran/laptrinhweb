@@ -9,12 +9,180 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
+    },
+    {
       "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\css\\stylekhai.css",
       "PackagePath": "staticwebassets\\css\\stylekhai.css"
     },
     {
       "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\app-store.png",
+      "PackagePath": "staticwebassets\\images\\app-store.png"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\buy-1.jpg",
+      "PackagePath": "staticwebassets\\images\\buy-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\buy-2.jpg",
+      "PackagePath": "staticwebassets\\images\\buy-2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\buy-3.jpg",
+      "PackagePath": "staticwebassets\\images\\buy-3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\cart.png",
+      "PackagePath": "staticwebassets\\images\\cart.png"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\category-1.jpg",
+      "PackagePath": "staticwebassets\\images\\category-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\category-2.jpg",
+      "PackagePath": "staticwebassets\\images\\category-2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\category-3 (2).jpg",
+      "PackagePath": "staticwebassets\\images\\category-3 (2).jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\category-3.jpg",
+      "PackagePath": "staticwebassets\\images\\category-3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\exclusive.png",
+      "PackagePath": "staticwebassets\\images\\exclusive.png"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\favicon.ico",
+      "PackagePath": "staticwebassets\\images\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\gallery-1.jpg",
+      "PackagePath": "staticwebassets\\images\\gallery-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\gallery-2.jpg",
+      "PackagePath": "staticwebassets\\images\\gallery-2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\gallery-3.jpg",
+      "PackagePath": "staticwebassets\\images\\gallery-3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\gallery-4.jpg",
+      "PackagePath": "staticwebassets\\images\\gallery-4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\image1.png",
+      "PackagePath": "staticwebassets\\images\\image1.png"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\img-credit.txt",
+      "PackagePath": "staticwebassets\\images\\img-credit.txt"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\logo-coca-cola.png",
+      "PackagePath": "staticwebassets\\images\\logo-coca-cola.png"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\logo-godrej.png",
+      "PackagePath": "staticwebassets\\images\\logo-godrej.png"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\logo-oppo.png",
+      "PackagePath": "staticwebassets\\images\\logo-oppo.png"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\logo-paypal.png",
+      "PackagePath": "staticwebassets\\images\\logo-paypal.png"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\logo-philips.png",
+      "PackagePath": "staticwebassets\\images\\logo-philips.png"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\logo-white.png",
+      "PackagePath": "staticwebassets\\images\\logo-white.png"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\menu.png",
+      "PackagePath": "staticwebassets\\images\\menu.png"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\play-store.png",
+      "PackagePath": "staticwebassets\\images\\play-store.png"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\product-1.jpg",
+      "PackagePath": "staticwebassets\\images\\product-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\product-10.jpg",
+      "PackagePath": "staticwebassets\\images\\product-10.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\product-11.jpg",
+      "PackagePath": "staticwebassets\\images\\product-11.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\product-12.jpg",
+      "PackagePath": "staticwebassets\\images\\product-12.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\product-2.jpg",
+      "PackagePath": "staticwebassets\\images\\product-2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\product-3.jpg",
+      "PackagePath": "staticwebassets\\images\\product-3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\product-4.jpg",
+      "PackagePath": "staticwebassets\\images\\product-4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\product-5.jpg",
+      "PackagePath": "staticwebassets\\images\\product-5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\product-6.jpg",
+      "PackagePath": "staticwebassets\\images\\product-6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\product-7.jpg",
+      "PackagePath": "staticwebassets\\images\\product-7.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\product-8.jpg",
+      "PackagePath": "staticwebassets\\images\\product-8.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\product-9.jpg",
+      "PackagePath": "staticwebassets\\images\\product-9.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\user-1.png",
+      "PackagePath": "staticwebassets\\images\\user-1.png"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\user-2.png",
+      "PackagePath": "staticwebassets\\images\\user-2.png"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\user-3.png",
+      "PackagePath": "staticwebassets\\images\\user-3.png"
     },
     {
       "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\js\\scriptkhai.js",

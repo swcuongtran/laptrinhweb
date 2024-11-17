@@ -59,10 +59,26 @@ namespace MVC.Controllers
         }
         // POST: Tạo mới sản phẩm
         [HttpPost]
-        public IActionResult Create(Product product)
+        public async Task<IActionResult> Create(Product product, IFormFile imageFile)
         {
             if (ModelState.IsValid)
             {
+                if (imageFile != null && imageFile.Length > 0)
+                {
+                    // Đặt tên cho tệp hình ảnh
+                    var fileName = Path.GetFileName(imageFile.FileName);
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", fileName);
+
+                    // Lưu hình ảnh vào thư mục images trong wwwroot
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(stream);
+                    }
+
+                    // Lưu đường dẫn hình ảnh vào thuộc tính ImageUrl
+                    product.ImageUrl = "/images/" + fileName;
+                }
+
                 _productService.CreateProduct(product);
                 TempData["SuccessMessage"] = "Product created successfully.";
                 return RedirectToAction("Index");
@@ -92,15 +108,33 @@ namespace MVC.Controllers
         // POST: Cập nhật sản phẩm
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Product product)
+        public async Task<IActionResult> Edit(int id, Product product, IFormFile imageFile)
         {
             if (id != product.ProductId) return BadRequest();
 
             if (ModelState.IsValid)
             {
+                if (imageFile != null && imageFile.Length > 0)
+                {
+                    // Đặt tên cho tệp hình ảnh
+                    var fileName = Path.GetFileName(imageFile.FileName);
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", fileName);
+
+                    // Lưu hình ảnh vào thư mục images trong wwwroot
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(stream);
+                    }
+
+                    // Cập nhật lại đường dẫn hình ảnh
+                    product.ImageUrl = "/images/" + fileName;
+                }
+
                 _productService.UpdateProduct(product);
+                TempData["SuccessMessage"] = "Product updated successfully.";
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["Categories"] = _categoryService.GetAllCategories();
             return View(product);
         }
