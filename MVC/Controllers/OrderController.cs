@@ -21,7 +21,6 @@ namespace MVC.Controllers
         }
 
         // Cập nhật trạng thái đơn hàng
-        [HttpPost]
         public IActionResult UpdateStatus(int id, OrderStatus status)
         {
             var order = _orderService.GetOrderById(id);
@@ -39,6 +38,19 @@ namespace MVC.Controllers
         {
             _orderService.DeleteOrder(id);
             return RedirectToAction("Index");
+        }
+        public IActionResult Details(int id)
+        {
+            // Lấy thông tin chi tiết đơn hàng từ dịch vụ
+            var order = _orderService.GetOrderWithCustomer(id);
+
+            if (order == null)
+            {
+                return NotFound(); // Nếu không tìm thấy đơn hàng, trả về lỗi NotFound
+            }
+
+            // Trả về view với model là thông tin đơn hàng
+            return View(order);
         }
     }
 }

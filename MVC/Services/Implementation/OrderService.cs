@@ -43,6 +43,12 @@ namespace MVC.Services.Implementation
                          .FirstOrDefault(o => o.OrderId == id);
             return order;
         }
+        public Order GetOrderWithCustomer(int id)
+        {
+            var order = _orderRepository.GetAllWithIncludes(o => o.Customer,o => o.OrderDetails,o => o.OrderDetails)
+                         .FirstOrDefault(o => o.OrderId == id);
+            return order;
+        }
         public IEnumerable<Order> GetOrdersByCustomerId(Guid customerId)
         {
             return _orderRepository.Find(o => o.CustomerId == customerId); // Lấy tất cả đơn hàng của khách hàng theo CustomerId

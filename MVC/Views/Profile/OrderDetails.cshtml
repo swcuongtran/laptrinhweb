@@ -2,43 +2,140 @@
 @{
     ViewData["Title"] = "OrderDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 
-<h1>OrderDetails</h1>
-<h2>Chi Tiết Đơn Hàng</h2>
+<div class="order-details-container">
+    <h1>Chi Tiết Đơn Hàng</h1>
+    <style>
+        .order-details-container {
+   max-width: 1000px;
+   margin: 20px auto;
+   padding: 20px;
+   background: #fff;
+   border-radius: 30px;
+   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+   animation: fadeIn 1s ease-in-out;
+}
 
-<div>
-    <h3>Thông Tin Đơn Hàng</h3>
-    <p><strong>Mã Đơn Hàng:</strong> @Model.OrderId</p>
-    <p><strong>Ngày Đặt:</strong> @Model.OrderDate.ToString("dd/MM/yyyy")</p>
-    <p><strong>Tổng Số Tiền:</strong> @Model.TotalAmount.ToString("C")</p>
-    <p><strong>Trạng Thái:</strong> @Model.Status.ToString()</p>
-</div>
+.order-details-container h1 {
+   text-align: center;
+   margin-bottom: 20px;
+   font-size: 2.5em;
+   color: #007bff;
+}
 
-<div>
-    <h3>Chi Tiết Các Sản Phẩm</h3>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Sản Phẩm</th>
-                <th>Số Lượng</th>
-                <th>Giá</th>
-                <th>Tổng</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var detail in Model.OrderDetails)
-            {
+.order-summary,
+.product-details ,pre {
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   margin-bottom: 30px;
+   padding: 20px;
+   border-radius: 10px;
+   background: #f1f1f1;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   transition: background-color 0.3s ease-in-out; /* Thêm transition cho hiệu ứng hover */
+}
+
+.order-summary p,
+.product-details p {
+   font-size: 1.2em;
+   margin: 10px 0;
+}
+
+.order-summary .order-status {
+   padding: 5px 10px;
+   margin:5px;
+   border-radius: 5px;
+   color : black;
+}
+
+.order-status.đã-giao {
+   background-color: #28a745; /* Màu xanh */
+}
+
+.order-status.đang-chờ {
+   background-color: #ffc107; /* Màu cam */
+}
+
+.order-status.hủy-đơn {
+   background-color: #dc3545; /* Màu đỏ */
+}
+
+.table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-bottom: 20px;
+   background: #fff;
+   border-radius: 10px;
+   overflow: hidden;
+}
+
+.table th,
+.table td {
+   padding: 12px;
+   text-align: left;
+   border-bottom: 1px solid #ddd;
+   transition: background-color 0.3s ease-in-out; /* Thêm transition cho hiệu ứng hover */
+}
+
+.table th {
+    margin-top:10px;
+   background-color: #007bff;
+   color: #fff;
+}
+
+.table tbody tr:nth-child(even) {
+   background-color: #f9f9f9;
+}
+
+
+.btn {
+   display: inline-block;
+   padding: 10px 20px;
+   border-radius: 5px;
+   color: #fff;
+   text-decoration: none;
+   text-align: center;
+   transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-back {
+   background-color: #007bff;
+}
+
+    </style>
+    <div class="order-summary">
+        <h3>Thông Tin Đơn Hàng</h3>
+        <p><strong>Mã Đơn Hàng:</strong> @Model.OrderId</p>
+        <p><strong>Ngày Đặt:</strong> @Model.OrderDate.ToString("dd/MM/yyyy")</p>
+        <p><strong>Tổng Số Tiền:</strong> @Model.TotalAmount.ToString("C")</p>
+        <p><strong>Trạng Thái:</strong> <span class="order-status">@Model.Status</span></p>
+    </div>
+
+    <div class="product-details">
+        <h3>Chi Tiết Các Sản Phẩm</h3>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@detail.ProductName</td>
-                    <td>@detail.Quantity</td>
-                    <td>@detail.UnitPrice.ToString("C")</td>
-                    <td>@(detail.Quantity * detail.UnitPrice)</td>
-                    
+                    <th>Sản Phẩm</th>
+                    <th>Số Lượng</th>
+                    <th>Giá</th>
+                    <th>Tổng</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                @foreach (var detail in Model.OrderDetails)
+                {
+                    <tr>
+                        <td>@detail.ProductName</td>
+                        <td>@detail.Quantity</td>
+                        <td>@detail.UnitPrice.ToString("C")</td>
+                        <td>@detail.Subtotal.ToString("C")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
-<a href="@Url.Action("Index", "Profile")">Quay lại hồ sơ</a>
+    <a href="@Url.Action("Index", "Profile")" class="btn btn-back">Quay lại hồ sơ</a>
+</div>

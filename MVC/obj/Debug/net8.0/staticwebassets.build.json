@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "eMpJPUkA+JiIRHlGixmwXu/+bh9NnQAu0hiJ5QwCW9I=",
+  "Hash": "ZkrkZls4D5/RAPmWEQNIMYg8KcrGaoBVUHErXTHRu9s=",
   "Source": "MVC",
   "BasePath": "_content/MVC",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\MVC.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\css\\Profile.css",
+      "SourceId": "MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\",
+      "BasePath": "_content/MVC",
+      "RelativePath": "css/Profile.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Profile.css"
     },
     {
       "Identity": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\css\\site.css",
@@ -148,6 +167,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\app-store.png"
+    },
+    {
+      "Identity": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\avatar.jpg",
+      "SourceId": "MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\",
+      "BasePath": "_content/MVC",
+      "RelativePath": "images/avatar.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\avatar.jpg"
     },
     {
       "Identity": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\buy-1.jpg",

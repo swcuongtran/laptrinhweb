@@ -4,6 +4,7 @@ using MVC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241118011729_addDateTime")]
+    partial class addDateTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,34 @@ namespace MVC.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("MVC.Models.Bill", b =>
+                {
+                    b.Property<int>("BillId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BillId"));
+
+                    b.Property<DateTime>("BillDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PaymentMethod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("BillId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Bills");
+                });
 
             modelBuilder.Entity("MVC.Models.Category", b =>
                 {
@@ -85,6 +116,59 @@ namespace MVC.Migrations
                         .IsUnique();
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("MVC.Models.Option", b =>
+                {
+                    b.Property<int>("OptionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OptionId"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("OptionId");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Options");
+                });
+
+            modelBuilder.Entity("MVC.Models.OptionDetail", b =>
+                {
+                    b.Property<int>("OptionDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OptionDetailId"));
+
+                    b.Property<int>("OptionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderDetailId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("OptionDetailId");
+
+                    b.HasIndex("OptionId");
+
+                    b.HasIndex("OrderDetailId");
+
+                    b.ToTable("OptionDetails");
                 });
 
             modelBuilder.Entity("MVC.Models.Order", b =>
@@ -383,6 +467,17 @@ namespace MVC.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("MVC.Models.Bill", b =>
+                {
+                    b.HasOne("MVC.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("MVC.Models.Customer", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
@@ -392,6 +487,25 @@ namespace MVC.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MVC.Models.OptionDetail", b =>
+                {
+                    b.HasOne("MVC.Models.Option", "Option")
+                        .WithMany()
+                        .HasForeignKey("OptionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("MVC.Models.OrderDetail", "OrderDetail")
+                        .WithMany("OptionDetails")
+                        .HasForeignKey("OrderDetailId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Option");
+
+                    b.Navigation("OrderDetail");
                 });
 
             modelBuilder.Entity("MVC.Models.Order", b =>
@@ -498,6 +612,11 @@ namespace MVC.Migrations
             modelBuilder.Entity("MVC.Models.Order", b =>
                 {
                     b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("MVC.Models.OrderDetail", b =>
+                {
+                    b.Navigation("OptionDetails");
                 });
 #pragma warning restore 612, 618
         }

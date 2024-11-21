@@ -1,0 +1,139 @@
+﻿body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.profile-container {
+    max-width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    transition: all 0.5s ease-in-out;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .profile-header h1 {
+        margin: 0;
+    }
+
+    .profile-header .avatar {
+        width: 100px;
+        height: 100px;
+        margin-right: 10px;
+        border-radius: 50%;
+        object-fit: cover;
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .profile-header .avatar:hover {
+            transform: scale(1.07);
+        }
+
+.profile-details {
+    margin-top: 20px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #f9f9f9;
+    transition: all 0.3s ease-in-out;
+}
+
+    .detail-item:hover {
+        background: #d1e5fa;
+    }
+
+    .detail-item label {
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+.profile-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+    .profile-buttons .btn-update,
+    .profile-buttons .btn-change-password {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        margin: 0px 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.4s, transform 0.3s ease-in-out;
+    }
+
+        .profile-buttons .btn-update:hover,
+        .profile-buttons .btn-change-password:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+.order-history {
+    margin-top: 30px;
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    transition: all 0.3s ease-in-out;
+}
+
+    .order-table th,
+    .order-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .order-table th {
+        background-color: #f1f1f1;
+    }
+
+    .order-table .order-delivered {
+        color: rgb(10, 151, 10);
+        font-weight: bold;
+        background-color: #aaf3b0;
+    }
+
+    .order-table .order-pending {
+        color: rgba(255, 166, 0, 0.945);
+        font-weight: bold;
+        background-color: #ffe2b4;
+    }
+
+    .order-table a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+    }
+
+        .order-table a:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
+
+    .order-table .order-cancelled {
+        color: rgb(241, 28, 28);
+        font-weight: bold;
+        background-color: #ffd6d6; /* Màu nền đỏ nhạt để dễ nhìn */
+    }

@@ -1,0 +1,56 @@
+﻿@model MVC.Models.Order
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Order Details</h2>
+
+<table class="table">
+    <tr>
+        <th>Order ID</th>
+        <td>@Model.OrderId</td>
+    </tr>
+    <tr>
+        <th>Customer</th>
+        <td>@Model.Customer.Name</td> <!-- Hiển thị tên khách hàng -->
+    </tr>
+    <tr>
+        <th>Order Date</th>
+        <td>@Model.OrderDate.ToString("dd/MM/yyyy")</td> <!-- Hiển thị ngày đặt hàng -->
+    </tr>
+    <tr>
+        <th>Total Amount</th>
+        <td>@Model.TotalAmount.ToString("C")</td> <!-- Hiển thị tổng giá trị đơn hàng -->
+    </tr>
+    <tr>
+        <th>Status</th>
+        <td>@Model.Status</td> <!-- Hiển thị trạng thái đơn hàng -->
+    </tr>
+</table>
+
+<h3>Order Details</h3>
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderDetails)
+        {
+            <tr>
+                
+                <td>@item.Quantity</td> <!-- Số lượng sản phẩm -->
+                <td>@item.UnitPrice.ToString("C")</td> <!-- Giá của sản phẩm -->
+                <td>@(item.Quantity * item.UnitPrice).ToString("C")</td> <!-- Tổng giá trị của sản phẩm -->
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Nút quay lại danh sách đơn hàng -->
+<a href="@Url.Action("Index", "Order")" class="btn btn-secondary btn-sm">Back to Orders</a>

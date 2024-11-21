@@ -10,5 +10,7 @@ namespace MVC.Services.Interface
         void CreateProduct(Product product);
         void UpdateProduct(Product product);
         void DeleteProduct(int id);
+        IEnumerable<Product> GetFeaturedProducts(int take);
+        IEnumerable<Product> GetLatestProducts(int take);
     }
 }

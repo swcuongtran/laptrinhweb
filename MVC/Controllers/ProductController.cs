@@ -65,20 +65,28 @@ namespace MVC.Controllers
             {
                 if (imageFile != null && imageFile.Length > 0)
                 {
-                    // Đặt tên cho tệp hình ảnh
+                    // Lấy tên tệp
                     var fileName = Path.GetFileName(imageFile.FileName);
+
+                    // Tạo đường dẫn lưu tệp
                     var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", fileName);
 
-                    // Lưu hình ảnh vào thư mục images trong wwwroot
+                    // Đảm bảo thư mục tồn tại
+                    var imagesDirectory = Path.GetDirectoryName(filePath);
+                    if (!Directory.Exists(imagesDirectory))
+                    {
+                        Directory.CreateDirectory(imagesDirectory);
+                    }
+
+                    // Lưu tệp ảnh vào thư mục
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await imageFile.CopyToAsync(stream);
                     }
 
-                    // Lưu đường dẫn hình ảnh vào thuộc tính ImageUrl
+                    // Lưu đường dẫn vào cơ sở dữ liệu
                     product.ImageUrl = "/images/" + fileName;
                 }
-
                 _productService.CreateProduct(product);
                 TempData["SuccessMessage"] = "Product created successfully.";
                 return RedirectToAction("Index");

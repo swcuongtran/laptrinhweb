@@ -4,73 +4,141 @@
     ViewData["Title"] = "Đăng nhập";
 }
 
-<!-- CSS để căn giữa form và tạo kiểu -->
 <style>
-    /* Container dùng Flexbox để căn giữa form */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa; /* Màu nền nhẹ */
+        margin: 0;
+        padding: 0;
+    }
+
     .login-container {
-        display: flex; /* Sử dụng Flexbox để căn giữa */
-        justify-content: center; /* Căn giữa theo chiều ngang */
-        align-items: center; /* Căn giữa theo chiều dọc */
-        height: 100vh; /* Chiều cao đầy đủ của viewport */
-        background-color: #f8f9fa; /* Màu nền nhạt */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
     }
 
-    /* Form đăng nhập */
     .login-form {
-        background-color: white; /* Nền trắng cho form */
-        padding: 30px; /* Khoảng cách nội dung trong form */
-        border-radius: 8px; /* Bo tròn góc form */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Tạo bóng đổ nhẹ cho form */
-        width: 100%; /* Chiều rộng 100% */
-        max-width: 400px; /* Chiều rộng tối đa là 400px */
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        max-width: 400px;
+        width: 100%;
     }
 
-    /* Căn chỉnh khoảng cách cho mỗi phần tử form */
-    .form-group {
-        margin-bottom: 15px; /* Khoảng cách dưới mỗi nhóm form */
+    .text-center {
+        text-align: center;
     }
 
-    /* Kiểu cho nhãn của checkbox (Ghi nhớ tài khoản) */
-    .form-check-label {
-        font-size: 0.9em; /* Cỡ chữ nhỏ hơn một chút */
+    .btn-block {
+        width: 100%;
     }
 
-    /* Kiểu cho nút đăng nhập */
-    .btn {
-        width: 100%; /* Nút chiếm đầy chiều rộng */
-        padding: 10px; /* Khoảng cách bên trong nút */
-        font-size: 1.1em; /* Cỡ chữ lớn hơn một chút */
-    }
-
-    /* Kiểu cho các nút đăng nhập mạng xã hội */
+    /* Tăng chiều rộng, chiều cao của các nút */
+    /* Đặt chiều rộng của các nút bằng với chữ "Hoặc đăng nhập bằng:" */
     .social-btn {
-        display: inline-block; /* Hiển thị các nút theo dòng ngang */
-        width: 48%; /* Chiếm 48% chiều rộng để có thể vừa 2 nút trên cùng một dòng */
-        padding: 10px; /* Khoảng cách bên trong nút */
-        text-align: center; /* Canh giữa chữ trong nút */
-        border-radius: 5px; /* Bo tròn góc nút */
-        color: white; /* Màu chữ trắng */
-        margin: 5px; /* Khoảng cách giữa các nút */
-        cursor: pointer; /* Thay đổi con trỏ khi hover */
-        font-size: 1em; /* Cỡ chữ cho nút */
+        display: block; /* Để mỗi nút chiếm một hàng */
+        width: 100%; /* Chiếm toàn bộ chiều rộng của container cha */
+        max-width: 200px; /* Đặt giới hạn chiều rộng tối đa */
+        padding: 10px; /* Tăng chiều cao nút */
+        font-size: 16px; /* Tăng kích thước chữ */
+        margin: 0 auto; /* Canh giữa các nút */
+        text-align: center; /* Canh giữa chữ */
+        color: white; /* Màu chữ */
+        border: none; /* Loại bỏ viền */
+        border-radius: 5px; /* Tạo góc bo tròn */
+        cursor: pointer; /* Hiển thị con trỏ khi hover */
     }
 
-    /* Màu nền cho nút Google */
+    /* Tăng khoảng cách giữa các nút */
+    .social-btn-container {
+        display: flex;
+        flex-direction: column; /* Các nút xếp theo cột */
+        align-items: center; /* Căn giữa các nút */
+        gap: 10px; /* Khoảng cách giữa các nút */
+    }
+
+        /* Khoảng cách giữa nút LinkedIn và liên kết "Quên mật khẩu" */
+        .social-btn-container + .text-center {
+            margin-top: 25px; /* Tăng khoảng cách */
+            gap: 10px;
+        }
+
     .btn-google {
-        background-color: #db4437; /* Màu nền đỏ của Google */
+        background-color: #db4437; /* Màu đỏ Google */
     }
 
-    /* Màu nền cho nút Facebook */
     .btn-facebook {
-        background-color: #3b5998; /* Màu nền xanh của Facebook */
+        background-color: #4267B2; /* Màu xanh Facebook */
     }
 
-    /* Màu nền cho nút LinkedIn */
     .btn-linkedin {
-        background-color: #0077b5; /* Màu nền xanh dương của LinkedIn */
+        background-color: #0077b5; /* Màu xanh LinkedIn */
+    }
+
+    .social-btn:hover {
+        opacity: 0.9; /* Hiệu ứng hover */
+    }
+
+    .btn {
+        border: none;
+        border-radius: 4px;
+        padding: 10px 15px;
+        font-size: 14px;
+        cursor: pointer;
+        margin: 0 5px;
+    }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+    .social-btn {
+        margin: 5px 0;
+        width: 100px;
+        text-align: center;
+        border-radius: 4px;
+    }
+
+
+      
+
+    .form-control {
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        padding: 8px;
+        width: 100%;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+    /* Căn chỉnh checkbox và nhãn "Ghi nhớ tài khoản" */
+    .form-check {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Khoảng cách giữa checkbox và nhãn */
+    }
+
+    .form-check-input {
+        width: 20px; /* Tăng kích thước checkbox */
+        height: 20px; /* Tăng kích thước checkbox */
+        margin: 0; /* Xóa margin mặc định */
+    }
+
+    .form-check-label {
+        font-size: 16px; /* Kích thước chữ tương đương checkbox */
+        margin-bottom: 0; /* Loại bỏ margin mặc định */
+    }
+
+    /* Tăng khoảng cách giữa chữ "Hoặc đăng nhập bằng" */
+    .text-center p {
+        margin: 15px 0; /* Khoảng cách trên và dưới của dòng chữ */
+        font-size: 16px; /* Tăng kích thước chữ để đồng bộ */
     }
 </style>
-
 <!-- Container để chứa form đăng nhập -->
 <div class="login-container">
     <!-- Form đăng nhập -->
@@ -81,38 +149,40 @@
             <!-- Nhóm nhập Email -->
             <div class="form-group">
                 <label asp-for="Email"></label> <!-- Nhãn cho ô nhập Email -->
-                <input asp-for="Email" class="form-control" /> <!-- Ô nhập Email -->
+                <input asp-for="Email" class="form-control" placeholder="Email" /> <!-- Ô nhập Email -->
                 <span asp-validation-for="Email" class="text-danger"></span> <!-- Hiển thị thông báo lỗi nếu có -->
             </div>
 
             <!-- Nhóm nhập mật khẩu -->
             <div class="form-group">
                 <label asp-for="Password" class="d-block mb-2">Mật khẩu</label> <!-- Nhãn cho ô nhập Mật khẩu -->
-                <input asp-for="Password" class="form-control" type="password" /> <!-- Ô nhập Mật khẩu -->
+                <input asp-for="Password" class="form-control" type="password" placeholder="Mật khẩu" /> <!-- Ô nhập Mật khẩu -->
                 <span asp-validation-for="Password" class="text-danger"></span> <!-- Hiển thị thông báo lỗi nếu có -->
             </div>
 
             <!-- Nhóm checkbox "Ghi nhớ tài khoản" -->
             <div class="form-group form-check">
-                <input asp-for="RememberMe" class="form-check-input" /> <!-- Checkbox Ghi nhớ tài khoản -->
-                <label asp-for="RememberMe" class="form-check-label">Ghi nhớ tài khoản</label> <!-- Nhãn cho checkbox -->
+                <input asp-for="RememberMe" class="form-check-input" type="checkbox" /> <!-- Checkbox -->
+                <label asp-for="RememberMe" class="form-check-label">Ghi nhớ tài khoản</label> <!-- Nhãn -->
             </div>
 
             <!-- Nút đăng nhập -->
-            <button type="submit" class="btn btn-primary">Đăng nhập</button>
+            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
         </form>
 
         <!-- Các nút đăng nhập qua mạng xã hội -->
         <div class="text-center mt-3">
             <p>Hoặc đăng nhập bằng:</p>
-            <div class="social-btn btn-google">Google</div> <!-- Nút đăng nhập Google -->
-            <div class="social-btn btn-facebook">Facebook</div> <!-- Nút đăng nhập Facebook -->
-            <div class="social-btn btn-linkedin">LinkedIn</div> <!-- Nút đăng nhập LinkedIn -->
+            <div class="social-btn-container">
+                <button class="social-btn btn-google">Google</button>
+                <button class="social-btn btn-facebook">Facebook</button>
+                <button class="social-btn btn-linkedin">LinkedIn</button>
+            </div>
         </div>
 
         <!-- Liên kết "Quên mật khẩu" và "Đăng ký tài khoản" -->
-        <div class="text-center mt-3">
-            <a href="#">Quên mật khẩu?</a> | <a href="#">Đăng ký tài khoản</a> <!-- Liên kết cho quên mật khẩu và đăng ký -->
+        <div class="text-center  me-5 mt-3 ">
+            <a href="#">Quên mật khẩu?</a> | <a href="Register">Đăng ký tài khoản</a>
         </div>
     </div>
 </div>

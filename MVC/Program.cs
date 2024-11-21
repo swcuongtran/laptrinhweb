@@ -37,9 +37,6 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
-builder.Services.AddScoped<IOptionService, OptionService>();
-builder.Services.AddScoped<IOptionDetailService, OptionDetailService>();
-builder.Services.AddScoped<IBillService, BillService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddHttpContextAccessor(); 
 builder.Services.AddSession();
@@ -87,9 +84,6 @@ using (var scope = app.Services.CreateScope())
         await userManager.AddToRoleAsync(adminUser, "Admin");
     }
 }
-
-
-
 app.UseAuthorization();
 
 app.MapControllerRoute(

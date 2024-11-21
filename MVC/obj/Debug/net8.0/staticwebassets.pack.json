@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\MVC.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\css\\Profile.css",
+      "PackagePath": "staticwebassets\\css\\Profile.css"
+    },
+    {
       "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -23,6 +27,10 @@
     {
       "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\app-store.png",
       "PackagePath": "staticwebassets\\images\\app-store.png"
+    },
+    {
+      "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\avatar.jpg",
+      "PackagePath": "staticwebassets\\images\\avatar.jpg"
     },
     {
       "Id": "C:\\Users\\Public\\my_project\\C#\\MVC\\MVC\\wwwroot\\images\\buy-1.jpg",

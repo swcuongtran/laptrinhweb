@@ -12,5 +12,6 @@ namespace MVC.Services.Interface
         Order GetOrderWithDetails(int id);
         IEnumerable<Order> GetOrdersByCustomerId(Guid customerId);
         IEnumerable<Order> GetOrdersByCustomerIds(List<Guid> customerIds);
+        public Order GetOrderWithCustomer(int id);
     }
 }

@@ -1,4 +1,5 @@
-﻿using MVC.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MVC.Models;
 using MVC.Repositories;
 using MVC.Services.Interface;
 namespace MVC.Services.Implementation
@@ -52,6 +53,21 @@ namespace MVC.Services.Implementation
             }
 
             return query.ToList();
+        }
+        public IEnumerable<Product> GetFeaturedProducts(int take)
+        {
+            // Assuming "Rating" is a property of the Product model
+            return _productRepository.GetAll()
+                .Take(take)                       // Take the top 'n' products
+                .ToList();
+        }
+        public IEnumerable<Product> GetLatestProducts(int take)
+        {
+            // Assuming "DateAdded" is a property of the Product model
+            return _productRepository.GetAll()
+                .OrderByDescending(p => p.DateAdded)  // Sort by date added in descending order
+                .Take(take)                          // Take the top 'n' products
+                .ToList();
         }
     }
 }

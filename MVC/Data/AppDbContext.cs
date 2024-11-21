@@ -8,11 +8,11 @@ namespace MVC.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<Bill> Bills { get; set; }
+
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Option> Options { get; set; }
-        public DbSet<OptionDetail> OptionDetails { get; set; }
+
+
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -97,49 +97,11 @@ namespace MVC.Data
                 .WithMany()
                 .HasForeignKey(od => od.ProductId);
 
-            // Bảng Bill
-            modelBuilder.Entity<Bill>()
-                .HasKey(b => b.BillId);  // Khóa chính
-            modelBuilder.Entity<Bill>()
-                .Property(b => b.BillDate)
-                .IsRequired();
-            modelBuilder.Entity<Bill>()
-                .Property(b => b.TotalAmount)
-                .HasColumnType("decimal(18,2)");
-            modelBuilder.Entity<Bill>()
-                .HasOne(b => b.Order)  // Thiết lập khóa ngoại đến Order
-                .WithMany()
-                .HasForeignKey(b => b.OrderId)
-                .OnDelete(DeleteBehavior.Cascade);  // Xóa theo cascade
 
-            // Bảng Option
-            modelBuilder.Entity<Option>()
-                .HasKey(o => o.OptionId);  // Khóa chính
-            modelBuilder.Entity<Option>()
-                .Property(o => o.Name)
-                .IsRequired()
-                .HasMaxLength(100);
-            modelBuilder.Entity<Option>()
-                .HasIndex(o => o.Name)
-                .IsUnique();  // Ràng buộc duy nhất
 
-            // Bảng OptionDetail
-            modelBuilder.Entity<OptionDetail>()
-                .HasKey(od => od.OptionDetailId);  // Khóa chính
-            modelBuilder.Entity<OptionDetail>()
-                .Property(od => od.Value)
-                .IsRequired()
-                .HasMaxLength(100);  // Ràng buộc độ dài tối đa
-            modelBuilder.Entity<OptionDetail>()
-                .HasOne(od => od.OrderDetail)  // Khóa ngoại đến OrderDetail
-                .WithMany(od => od.OptionDetails)
-                .HasForeignKey(od => od.OrderDetailId)
-                .OnDelete(DeleteBehavior.Cascade);  // Xóa theo cascade
-            modelBuilder.Entity<OptionDetail>()
-                .HasOne(od => od.Option)  // Khóa ngoại đến Option
-                .WithMany()
-                .HasForeignKey(od => od.OptionId)
-                .OnDelete(DeleteBehavior.Restrict);  // Hạn chế xóa Option nếu có OptionDetail
+
+
+
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Customer>()

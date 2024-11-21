@@ -5,38 +5,66 @@
 }
 
 <h2>Thông tin tài khoản</h2>
-
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">@Model.Customer.Name</h5>
-        <p class="card-text">Email: @Model.Customer.Email</p>
-        <p class="card-text">Địa chỉ: @Model.Customer.Address</p>
-        <p class="card-text">Số điện thoại: @Model.Customer.Phone</p>
-
-        <!-- Nút Cập nhật thông tin -->
-        <a href="@Url.Action("EditProfile", "Profile")" class="btn btn-primary">Cập nhật thông tin</a>
+<div class="profile-container">
+    <div class="profile-header">
+        <h1>@Model.Customer.Name</h1>
+        <img src="~/Images/avatar.jpg" alt="Avatar" class="avatar">
+    </div>
+    <div class="profile-details">
+        <div class="detail-item">
+            <label>Email:</label>
+            <span>@Model.Customer.Email</span>
+        </div>
+        <div class="detail-item">
+            <label>Địa chỉ:</label>
+            <span>@Model.Customer.Address</span>
+        </div>
+        <div class="detail-item">
+            <label>Số điện thoại:</label>
+            <span>@Model.Customer.Phone</span>
+        </div>
+    </div>
+    <div class="profile-buttons">
+        <a href="@Url.Action("EditProfile", "Profile")" class="btn-update">Cập nhật thông tin</a>
+        <a href="@Url.Action("ChangePassword", "Account")" class="btn-change-password">Đổi Mật Khẩu</a>
     </div>
 </div>
-<a href="@Url.Action("ChangePassword", "Account")" class="btn btn-warning">Đổi Mật Khẩu</a>
-<h3>Lịch sử đơn hàng</h3>
-@if (Model.OrderHistory.Any())
-{
-    <ul class="list-group">
-        @foreach (var order in Model.OrderHistory)
-        {
-            <li class="list-group-item">
-                <strong>Đơn hàng số:</strong> @order.OrderId -
-                <strong>Ngày đặt:</strong> @order.OrderDate.ToString("dd/MM/yyyy")
-                <p>Trạng thái: @order.Status.ToString()</p>
-                <a href="@Url.Action("OrderDetails", "Profile", new { orderId = order.OrderId })">Xem chi tiết</a>
-            </li>
-        }
-    </ul>
-}
-else
-{
-    <p>Không có đơn hàng nào.</p>
-}
 
+<h3>Lịch sử đơn hàng</h3>
+<div class="order-history">
+    @if (Model.OrderHistory.Any())
+    {
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>Số đơn hàng</th>
+                    <th>Ngày đặt</th>
+                    <th>Trạng thái</th>
+                    <th>Chi tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.OrderHistory)
+                {
+                    <tr>
+                        <td>@order.OrderId</td>
+                        <td>@order.OrderDate.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            @order.Status
+                        </td>
+                        <td><a href="@Url.Action("OrderDetails", "Profile", new { orderId = order.OrderId })">Xem chi tiết</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Không có đơn hàng nào.</p>
+    }
+</div>
+
+
+<link rel="stylesheet" href="~/css/Profile.css" />
 
 

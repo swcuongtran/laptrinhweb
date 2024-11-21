@@ -1,50 +1,79 @@
 ﻿@model IEnumerable<MVC.Models.Order>
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Quản lý đơn hàng";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Order Management</h2>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Order ID</th>
-            <th>Customer</th>
-            <th>Order Date</th>
-            <th>Total Amount</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var order in Model)
-        {
-            <tr>
-                <td>@order.OrderId</td>
-                <td>@order.Customer.Name</td>
-                <td>@order.OrderDate.ToString("dd/MM/yyyy")</td>
-                <td>@order.TotalAmount.ToString("C")</td>
-                <td>@order.Status</td>
-                <td>
-                    <a href="@Url.Action("Details", "Order", new { id = order.OrderId })" class="btn btn-info btn-sm">Details</a>
-                    <a href="#" onclick="updateStatus(@order.OrderId)" class="btn btn-warning btn-sm">Update Status</a>
-                    <form asp-action="Delete" asp-controller="Order" method="post" style="display:inline;">
-                        <input type="hidden" name="id" value="@order.OrderId" />
-                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                    </form>
-                </td>
-            </tr>
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Quản lý đơn hàng</h2>
+    <style>
+        .table th, .table td {
+            vertical-align: middle; /* Canh giữa theo chiều dọc */
         }
-    </tbody>
-</table>
+
+        .btn-sm {
+            margin: 0 2px; /* Khoảng cách giữa các nút */
+        }
+
+        .badge {
+            font-size: 0.9rem;
+            padding: 0.4em 0.6em;
+        }
+    </style>
+
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Mã đơn hàng</th>
+                <th>Khách hàng</th>
+                <th>Ngày đặt</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+                <th class="text-center">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="6" class="text-center">Không có đơn hàng nào.</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td>@order.OrderId</td>
+                        <td>@order.Customer.Name</td>
+                        <td>@order.OrderDate.ToString("dd/MM/yyyy")</td>
+                        <td>@order.TotalAmount.ToString("C")</td>
+                        <td>
+                           @order.Status
+                        </td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Details", "Order", new { id = order.OrderId })" class="btn btn-info btn-sm">Chi tiết</a>
+                            <button onclick="updateStatus(@order.OrderId)" class="btn btn-warning btn-sm">Cập nhật</button>
+                            <form asp-action="Delete" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@order.OrderId" />
+                                <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
 <script>
     function updateStatus(orderId) {
-        var status = prompt("Enter new status (0=Pending, 1=Shipped, 2=Delivered, 3=Canceled):");
-        if (status !== null) {
+        var status = prompt("Nhập trạng thái mới (0=Pending, 1=Shipped, 2=Delivered, 3=Canceled):");
+        if (status !== null && !isNaN(status) && status >= 0 && status <= 3) {
             window.location.href = `/Order/UpdateStatus?id=${orderId}&status=${status}`;
+        } else {
+            alert("Trạng thái không hợp lệ. Vui lòng nhập số từ 0 đến 3.");
         }
     }
 </script>
-
-

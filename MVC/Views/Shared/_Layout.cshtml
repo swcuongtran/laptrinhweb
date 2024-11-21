@@ -24,9 +24,9 @@
                 <nav>
                     <ul id="MenuItems">
                         <li><a href="/Home/Index">Home</a></li>
-                        <li><a href="Product/Index">Products</a></li>
-                        <li><a href="~/about">About</a></li>
-                        <li><a href="~/contact">Contact</a></li>
+                        <li>
+                            <a asp-action="Index" asp-controller="Product">Product</a>
+                        </li>
                         @if (User.Identity != null && User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
@@ -92,7 +92,7 @@
                 </div>
             </div>
             <hr />
-            <p class="copyright">Copyright 2021 - Apurba Kr. Pramanik</p>
+            <p class="copyright">Copyright 2024 - CuongTran</p>
         </div>
     </div>
 
